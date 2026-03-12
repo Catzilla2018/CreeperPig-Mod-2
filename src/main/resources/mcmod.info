@@ -1,0 +1,15 @@
+[
+  {
+    "modid": "creeperpig",
+    "name": "Creeper Pig",
+    "description": "Replaces pig mob behavior with creeper behavior. Pigs are now hostile and will explode!",
+    "version": "1.0.0",
+    "mcversion": "1.7.10",
+    "url": "",
+    "authorList": ["YourName"],
+    "credits": "Made with Claude",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]

@@ -1,0 +1,43 @@
+name: Build Mod
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK 8
+      uses: actions/setup-java@v3
+      with:
+        java-version: '8'
+        distribution: 'adopt'
+    
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+    
+    - name: Build with Gradle
+      run: ./gradlew build
+    
+    - name: Upload JAR artifact
+      uses: actions/upload-artifact@v3
+      if: success()
+      with:
+        name: CreeperPig-1.0.0.jar
+        path: build/libs/
+        
+    - name: Create Release
+      if: success()
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v1.0.0
+        release_name: CreeperPig Mod v1.0.0
+        body: "Creeper Pig mod for Minecraft 1.7.10"
+        draft: false
+        prerelease: false
